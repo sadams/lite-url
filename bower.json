@@ -1,0 +1,30 @@
+{
+  "name": "lite-url",
+  "main": "dist/lite-url.min.js",
+  "version": "0.0.1",
+  "authors": [
+    "Sam Adams <adams.sam@gmail.com>"
+  ],
+  "description": "Small, JS lib that uses regex for parsing a URL into it's component parts.",
+  "moduleType": [
+    "globals",
+    "amd",
+    "node"
+  ],
+  "keywords": [
+    "url",
+    "uri",
+    "url parsing"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "qunit": "~1.14.0"
+  }
+}

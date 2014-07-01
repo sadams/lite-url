@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link rel="stylesheet" type="text/css" href="../libs/qunit/qunit/qunit.css"/>
+
+    <script src="../libs/qunit/qunit/qunit.js"></script>
+    <script src="../dist/lite-url.min.js"></script>
+
+    <script>
+        var tests = [
+            {
+                "arguments":['http://www.example.com'],
+                "expected":{
+                    "hash": "",
+                    "search": "",
+                    "pathname": "",
+                    "port": "",
+                    "hostname": "www.example.com",
+                    "host": "www.example.com",
+                    "password": "",
+                    "username": "",
+                    "protocol": "http:",
+                    "origin": "http://www.example.com",
+                    "href": "http://www.example.com",
+                    "params": {}
+                }
+            },
+            {
+                "arguments":['https://www.example.com/my/path'],
+                "expected":{
+                    "hash": "",
+                    "search": "",
+                    "pathname": "/my/path",
+                    "port": "",
+                    "hostname": "www.example.com",
+                    "host": "www.example.com",
+                    "password": "",
+                    "username": "",
+                    "protocol": "https:",
+                    "origin": "https://www.example.com",
+                    "href": "https://www.example.com/my/path",
+                    "params": {}
+                }
+            },
+            {
+                "arguments":['http://www.example.com?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang'],
+                "expected":{
+                    "hash": "#foobar/bing/bo@ng?bang",
+                    "search": "?foo=bar&bingobang=&king=kong@kong.com",
+                    "pathname": "",
+                    "port": "",
+                    "hostname": "www.example.com",
+                    "host": "www.example.com",
+                    "password": "",
+                    "username": "",
+                    "protocol": "http:",
+                    "origin": "http://www.example.com",
+                    "href": "http://www.example.com?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang",
+                    "params": {
+                        "foo": "bar",
+                        "bingobang": "",
+                        "king": "kong@kong.com"
+                    }
+                }
+            },
+            {
+                "arguments":['http://a:b@example.com:890/path/wah@t/foo.js?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang'],
+                "expected":{
+                    "hash": "#foobar/bing/bo@ng?bang",
+                    "search": "?foo=bar&bingobang=&king=kong@kong.com",
+                    "pathname": "/path/wah@t/foo.js",
+                    "port": "890",
+                    "hostname": "example.com",
+                    "host": "example.com:890",
+                    "password": "b",
+                    "username": "a",
+                    "protocol": "http:",
+                    "origin": "http://a:b@example.com:890",
+                    "href": "http://a:b@example.com:890/path/wah@t/foo.js?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang",
+                    "params": {
+                        "foo": "bar",
+                        "bingobang": "",
+                        "king": "kong@kong.com"
+                    }
+                }
+            }
+        ];
+        QUnit.test("just let's go", function(assert){
+            expect(tests.length);
+            for (var i in tests) {
+                if (tests.hasOwnProperty(i)) {
+                    var test = tests[i];
+                    var actual = liteURL.call(this,test.arguments);
+                    assert.deepEqual(actual, test.expected, "liteURL didn't like: " + JSON.stringify(test.arguments));
+                }
+            }
+        });
+    </script>
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+</body>
+</html>

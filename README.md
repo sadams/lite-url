@@ -22,15 +22,23 @@ but in a cross browser way (taken from Chrome 35):
       "href": "http://user:pass@example.com:8080/directory/file.ext?query=1#anchor"
     }
 
+
 usage
 =====
 
     <script src="tiny-url.min.js"></script>
     <script>
         var url = 'http://user:pass@example.com:8080/directory/file.ext?query=1#anchor';
-        var parsed = new tinyURL(url);
+        var parsed = new liteURL(url);
         console.log(parsed);
     </script>
+
+
+notes
+=====
+
+The URL object in Chrome etc doesn't quite fit with other interpretations of the spec (http://en.wikipedia.org/wiki/URI_scheme#Examples).
+
 
 alternatives
 =====
