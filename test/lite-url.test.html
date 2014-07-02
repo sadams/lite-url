@@ -4,9 +4,14 @@
     <meta charset="UTF-8">
     <title></title>
 
-    <link rel="stylesheet" type="text/css" href="../libs/qunit/qunit/qunit.css"/>
+    <!-- bower:css -->
+    <link rel="stylesheet" href="../libs/qunit/qunit/qunit.css" />
+    <!-- endbower -->
 
+    <!-- bower:js -->
     <script src="../libs/qunit/qunit/qunit.js"></script>
+    <!-- endbower -->
+
     <script src="../dist/lite-url.min.js"></script>
 
     <script>
@@ -88,7 +93,7 @@
                 }
             }
         ];
-        QUnit.test("just let's go", function(assert){
+        QUnit.test("test urls", function(assert){
             expect(tests.length);
             for (var i in tests) {
                 if (tests.hasOwnProperty(i)) {

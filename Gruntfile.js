@@ -34,6 +34,27 @@ module.exports = function(grunt) {
                     'dist/lite-url.min.js': ['src/lite-url.js']
                 }
             }
+        },
+        wiredep: {
+
+            target: {
+
+                // Point to the files that should be updated when
+                // you run `grunt wiredep`
+                src: [
+                    'test/**/*.html',   // .html support...
+                ],
+
+                // Optional:
+                // ---------
+                cwd: '',
+                dependencies: true,
+                devDependencies: true,
+                exclude: [],
+                fileTypes: {},
+                ignorePath: '',
+                overrides: {}
+            }
         }
     });
 
@@ -42,9 +63,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-connect');
+    grunt.loadNpmTasks('grunt-wiredep');
 
     // Default task(s).
-    grunt.registerTask('test', ['connect','qunit']);
+    grunt.registerTask('test', ['wiredep','connect','qunit']);
     grunt.registerTask('build', ['jshint','uglify']);
     grunt.registerTask('default', ['build','test']);
 
