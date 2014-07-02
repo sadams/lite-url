@@ -25,7 +25,7 @@ but in a cross browser way (taken from Chrome 35):
 install
 =====
 
-   bower install --save lite-url
+    bower install --save lite-url
 
 or just grab the minified version from `dist/` or full version from `src/`
 
