@@ -22,6 +22,13 @@ but in a cross browser way (taken from Chrome 35):
       "href": "http://user:pass@example.com:8080/directory/file.ext?query=1#anchor"
     }
 
+install
+=====
+
+    bower install --save lite-url
+
+or just grab the minified version from `dist/` or full version from `src/`
+
 
 usage
 =====
