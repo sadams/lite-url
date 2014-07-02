@@ -112,6 +112,27 @@
                         "king": "kong@kong.com"
                     }
                 }
+            },
+            {
+                "arguments":['?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?b#ang'],
+                "expected":{
+                    "hash": "#foobar/bing/bo@ng?b#ang",
+                    "search": "?foo=bar&bingobang=&king=kong@kong.com",
+                    "pathname": "",
+                    "port": "",
+                    "hostname": "",
+                    "host": "",
+                    "password": "",
+                    "username": "",
+                    "protocol": "",
+                    "origin": "",
+                    "href": "?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?b#ang",
+                    "params": {
+                        "foo": "bar",
+                        "bingobang": "",
+                        "king": "kong@kong.com"
+                    }
+                }
             }
         ];
         QUnit.test("test urls", function(assert){
