@@ -1,7 +1,7 @@
 {
   "name": "lite-url",
   "main": "dist/lite-url.min.js",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "authors": [
     "Sam Adams <adams.sam@gmail.com>"
   ],
@@ -20,9 +20,8 @@
   "ignore": [
     "**/.*",
     "node_modules",
-    "bower_components",
-    "test",
-    "tests"
+    "libs",
+    "test"
   ],
   "devDependencies": {
     "qunit": "~1.14.0"
