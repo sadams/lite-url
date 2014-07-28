@@ -10,7 +10,7 @@ module.exports = function(grunt) {
             all: {
                 options: {
                     urls: [
-                        'http://localhost:8000/test/lite-url.test.html'
+                        'http://localhost:8000/test/browser/lite-url.test.html'
                     ]
                 }
             }
@@ -42,7 +42,7 @@ module.exports = function(grunt) {
                 // Point to the files that should be updated when
                 // you run `grunt wiredep`
                 src: [
-                    'test/**/*.html',   // .html support...
+                    'test/browser/**/*.html',   // .html support...
                 ],
 
                 // Optional:
@@ -55,6 +55,9 @@ module.exports = function(grunt) {
                 ignorePath: '',
                 overrides: {}
             }
+        },
+        nodeunit: {
+            all: ['test/node/*.test.js']
         }
     });
 
@@ -64,10 +67,11 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-wiredep');
+    grunt.loadNpmTasks('grunt-contrib-nodeunit');
 
     // Default task(s).
-    grunt.registerTask('test', ['wiredep','connect','qunit']);
     grunt.registerTask('build', ['jshint','uglify']);
-    grunt.registerTask('default', ['build','test']);
+    grunt.registerTask('test', ['build','wiredep','connect','qunit','nodeunit']);
+    grunt.registerTask('default', ['test']);
 
 };
