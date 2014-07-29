@@ -5,14 +5,14 @@
     <title></title>
 
     <!-- bower:css -->
-    <link rel="stylesheet" href="../libs/qunit/qunit/qunit.css" />
+    <link rel="stylesheet" href="../../libs/qunit/qunit/qunit.css" />
     <!-- endbower -->
 
     <!-- bower:js -->
-    <script src="../libs/qunit/qunit/qunit.js"></script>
+    <script src="../../libs/qunit/qunit/qunit.js"></script>
     <!-- endbower -->
 
-    <script src="../dist/lite-url.min.js"></script>
+    <script src="../../dist/lite-url.min.js"></script>
 
     <script>
         var tests = [
@@ -90,6 +90,86 @@
                         "bingobang": "",
                         "king": "kong@kong.com"
                     }
+                }
+            },
+            {
+                "arguments":['//a:b@example.com:890/path/wah@t/foo.js?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang'],
+                "expected":{
+                    "hash": "#foobar/bing/bo@ng?bang",
+                    "search": "?foo=bar&bingobang=&king=kong@kong.com",
+                    "pathname": "/path/wah@t/foo.js",
+                    "port": "890",
+                    "hostname": "example.com",
+                    "host": "example.com:890",
+                    "password": "b",
+                    "username": "a",
+                    "protocol": "",
+                    "origin": "//a:b@example.com:890",
+                    "href": "//a:b@example.com:890/path/wah@t/foo.js?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang",
+                    "params": {
+                        "foo": "bar",
+                        "bingobang": "",
+                        "king": "kong@kong.com"
+                    }
+                }
+            },
+            {
+                "arguments":['?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?b#ang'],
+                "expected":{
+                    "hash": "#foobar/bing/bo@ng?b#ang",
+                    "search": "?foo=bar&bingobang=&king=kong@kong.com",
+                    "pathname": "",
+                    "port": "",
+                    "hostname": "",
+                    "host": "",
+                    "password": "",
+                    "username": "",
+                    "protocol": "",
+                    "origin": "",
+                    "href": "?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?b#ang",
+                    "params": {
+                        "foo": "bar",
+                        "bingobang": "",
+                        "king": "kong@kong.com"
+                    }
+                }
+            },
+            {
+                "arguments":['http://192.20.10.112?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang'],
+                "expected":{
+                    "hash": "#foobar/bing/bo@ng?bang",
+                    "search": "?foo=bar&bingobang=&king=kong@kong.com",
+                    "pathname": "",
+                    "port": "",
+                    "hostname": "192.20.10.112",
+                    "host": "192.20.10.112",
+                    "password": "",
+                    "username": "",
+                    "protocol": "http:",
+                    "origin": "http://192.20.10.112",
+                    "href": "http://192.20.10.112?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang",
+                    "params": {
+                        "foo": "bar",
+                        "bingobang": "",
+                        "king": "kong@kong.com"
+                    }
+                }
+            },
+            {
+                "arguments":['http:'],
+                "expected":{
+                    "hash": "",
+                    "search": "",
+                    "pathname": "",
+                    "port": "",
+                    "hostname": "",
+                    "host": "",
+                    "password": "",
+                    "username": "",
+                    "protocol": "http:",
+                    "origin": "http:",
+                    "href": "http:",
+                    "params": {}
                 }
             }
         ];

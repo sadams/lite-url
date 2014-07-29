@@ -1,3 +1,6 @@
+var banner = '/*! <%= pkg.name %> v<%= pkg.version %> <%= grunt.template.today("dd-mm-yyyy") %> ' +
+    '<%= pkg.repository.url %> */\n';
+
 module.exports = function(grunt) {
 
     // Project configuration.
@@ -10,7 +13,7 @@ module.exports = function(grunt) {
             all: {
                 options: {
                     urls: [
-                        'http://localhost:8000/test/lite-url.test.html'
+                        'http://localhost:8000/test/browser/lite-url.test.html'
                     ]
                 }
             }
@@ -25,8 +28,7 @@ module.exports = function(grunt) {
         },
         uglify: {
             options: {
-                banner: '/*! <%= pkg.name %> v<%= pkg.version %> <%= grunt.template.today("dd-mm-yyyy") %> ' +
-                '<%= pkg.repository %> <%= pkg.authors %> */\n',
+                banner: banner,
                 browser: true
             },
             dist: {
@@ -42,7 +44,7 @@ module.exports = function(grunt) {
                 // Point to the files that should be updated when
                 // you run `grunt wiredep`
                 src: [
-                    'test/**/*.html',   // .html support...
+                    'test/browser/**/*.html'   // .html support...
                 ],
 
                 // Optional:
@@ -55,7 +57,21 @@ module.exports = function(grunt) {
                 ignorePath: '',
                 overrides: {}
             }
+        },
+        nodeunit: {
+            all: ['test/node/*.test.js']
+        },
+        concat: {
+            options: {
+                stripBanners: true,
+                banner: banner
+            },
+            dist: {
+                src: ['src/lite-url.js'],
+                dest: 'dist/lite-url.js'
+            }
         }
+
     });
 
     // Load the plugin that provides the "uglify" task.
@@ -64,10 +80,12 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-qunit');
     grunt.loadNpmTasks('grunt-contrib-connect');
     grunt.loadNpmTasks('grunt-wiredep');
+    grunt.loadNpmTasks('grunt-contrib-nodeunit');
+    grunt.loadNpmTasks('grunt-contrib-concat');
 
     // Default task(s).
-    grunt.registerTask('test', ['wiredep','connect','qunit']);
-    grunt.registerTask('build', ['jshint','uglify']);
-    grunt.registerTask('default', ['build','test']);
+    grunt.registerTask('build', ['jshint','uglify','concat']);
+    grunt.registerTask('test', ['build','wiredep','connect','qunit','nodeunit']);
+    grunt.registerTask('default', ['test']);
 
 };
