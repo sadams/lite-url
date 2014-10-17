@@ -51,6 +51,33 @@
                 }
             },
             {
+                "arguments":['http://www.example.com?foo=bar&foo=pub&lipsum=lorem&lipsum=ipsum&lipsum=dolor#foobar/bing/bo@ng?bang'],
+                "expected":{
+                    "hash": "#foobar/bing/bo@ng?bang",
+                    "search": "?foo=bar&foo=pub&lipsum=lorem&lipsum=ipsum&lipsum=dolor",
+                    "pathname": "",
+                    "port": "",
+                    "hostname": "www.example.com",
+                    "host": "www.example.com",
+                    "password": "",
+                    "username": "",
+                    "protocol": "http:",
+                    "origin": "http://www.example.com",
+                    "href": "http://www.example.com?foo=bar&foo=pub&lipsum=lorem&lipsum=ipsum&lipsum=dolor#foobar/bing/bo@ng?bang",
+                    "params": {
+                        "foo": [
+                            "bar",
+                            "pub"
+                        ],
+                        "lipsum": [
+                            "lorem",
+                            "ipsum",
+                            "dolor"
+                        ]
+                    }
+                }
+            },
+            {
                 "arguments":['http://www.example.com?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang'],
                 "expected":{
                     "hash": "#foobar/bing/bo@ng?bang",
