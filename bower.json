@@ -1,7 +1,7 @@
 {
   "name": "lite-url",
   "main": "dist/lite-url.min.js",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "authors": [
     "Sam Adams <adams.sam@gmail.com>"
   ],
