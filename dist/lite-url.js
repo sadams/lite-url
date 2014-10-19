@@ -1,4 +1,4 @@
-/*! lite-url v0.1.2 19-10-2014 https://github.com/sadams/lite-url.git */
+/*! lite-url v0.2.0 19-10-2014 https://github.com/sadams/lite-url.git */
 (function(){
     'use strict';
 
