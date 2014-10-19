@@ -1,4 +1,4 @@
-/*! lite-url v0.1.1 29-07-2014 https://github.com/sadams/lite-url.git */
+/*! lite-url v0.1.2 17-10-2014 https://github.com/sadams/lite-url.git */
 (function(){
     'use strict';
 
@@ -90,7 +90,15 @@
         query.replace(queryParser, function ($0, $1, $2) {
             //query isn't actually modified, .replace() is used as an iterator to populate params
             if ($1) {
-                uri.params[$1] = $2;
+                if (uri.params[$1]) {
+                    if(uri.params[$1] instanceof Array) {
+                        uri.params[$1].push($2);
+                    } else {
+                        uri.params[$1] = [uri.params[$1], $2];
+                    }
+                } else {
+                    uri.params[$1] = $2;
+                }
             }
         });
 

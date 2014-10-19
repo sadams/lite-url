@@ -89,7 +89,15 @@
         query.replace(queryParser, function ($0, $1, $2) {
             //query isn't actually modified, .replace() is used as an iterator to populate params
             if ($1) {
-                uri.params[$1] = $2;
+                if (uri.params[$1]) {
+                    if(uri.params[$1] instanceof Array) {
+                        uri.params[$1].push($2);
+                    } else {
+                        uri.params[$1] = [uri.params[$1], $2];
+                    }
+                } else {
+                    uri.params[$1] = $2;
+                }
             }
         });
 
