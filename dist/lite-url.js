@@ -1,4 +1,4 @@
-/*! lite-url v0.1.2 17-10-2014 https://github.com/sadams/lite-url.git */
+/*! lite-url v0.1.2 19-10-2014 https://github.com/sadams/lite-url.git */
 (function(){
     'use strict';
 
@@ -17,7 +17,7 @@
      * For parsing query params out
      * @type {RegExp}
      */
-    var queryParser = /(?:^|&)([^&=]*)=?([^&]*)/g;
+    var queryParserRegex = /(?:^|&)([^&=]*)=?([^&]*)/g;
 
     /**
      * For parsing a url into component parts
@@ -41,11 +41,28 @@
         "hash"                     // #anchor
     ];
 
+    /**
+     * @param {string} uri
+     * @returns {{}}
+     */
+    function queryParser(uri) {
+        var params = {};
+
+        //strip the question mark from search
+        var query = uri.search ? uri.search.substring( uri.search.indexOf('?') + 1 ) : '';
+        query.replace(queryParserRegex, function ($0, $1, $2) {
+            //query isn't actually modified, .replace() is used as an iterator to populate params
+            if ($1) {
+                params[$1] = $2;
+            }
+        });
+        return params;
+    }
 
     /**
      * Uri parsing method.
      *
-     * @param str
+     * @param {string} str
      * @returns {{
      *   href:string,
      *   origin:string,
@@ -83,30 +100,20 @@
             uri[keys[i]] = matches[i] || '';
         }
 
-        uri.params = {};
-
-        //strip the question mark from search
-        var query = uri.search ? uri.search.substring( uri.search.indexOf('?') + 1 ) : '';
-        query.replace(queryParser, function ($0, $1, $2) {
-            //query isn't actually modified, .replace() is used as an iterator to populate params
-            if ($1) {
-                if (uri.params[$1]) {
-                    if(uri.params[$1] instanceof Array) {
-                        uri.params[$1].push($2);
-                    } else {
-                        uri.params[$1] = [uri.params[$1], $2];
-                    }
-                } else {
-                    uri.params[$1] = $2;
-                }
-            }
-        });
+        uri.params = queryParser(uri);
 
         // Stored parsed values
         memo[str] = uri;
 
         return uri;
     }
+
+    /**
+     * @callback queryParser
+     */
+    liteURL.changeQueryParser = function(parser) {
+        queryParser = parser;
+    };
 
     //moduleType support
     if (typeof exports !== 'undefined') {

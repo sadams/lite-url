@@ -51,33 +51,6 @@
                 }
             },
             {
-                "arguments":['http://www.example.com?foo=bar&foo=pub&lipsum=lorem&lipsum=ipsum&lipsum=dolor#foobar/bing/bo@ng?bang'],
-                "expected":{
-                    "hash": "#foobar/bing/bo@ng?bang",
-                    "search": "?foo=bar&foo=pub&lipsum=lorem&lipsum=ipsum&lipsum=dolor",
-                    "pathname": "",
-                    "port": "",
-                    "hostname": "www.example.com",
-                    "host": "www.example.com",
-                    "password": "",
-                    "username": "",
-                    "protocol": "http:",
-                    "origin": "http://www.example.com",
-                    "href": "http://www.example.com?foo=bar&foo=pub&lipsum=lorem&lipsum=ipsum&lipsum=dolor#foobar/bing/bo@ng?bang",
-                    "params": {
-                        "foo": [
-                            "bar",
-                            "pub"
-                        ],
-                        "lipsum": [
-                            "lorem",
-                            "ipsum",
-                            "dolor"
-                        ]
-                    }
-                }
-            },
-            {
                 "arguments":['http://www.example.com?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang'],
                 "expected":{
                     "hash": "#foobar/bing/bo@ng?bang",
@@ -209,6 +182,57 @@
                     assert.deepEqual(actual, test.expected, "liteURL didn't like: " + JSON.stringify(test.arguments));
                 }
             }
+        });
+        QUnit.test("query parser", function(assert){
+            liteURL.changeQueryParser(function (uri) {
+                var params = {};
+
+                //strip the question mark from search
+                var query = uri.search ? uri.search.substring(uri.search.indexOf('?') + 1) : '';
+                query.replace(/(?:^|&)([^&=]*)=?([^&]*)/g, function ($0, $1, $2) {
+                    //query isn't actually modified, .replace() is used as an iterator to populate params
+                    if ($1) {
+                        if (params[$1]) {
+                            if (params[$1] instanceof Array) {
+                                params[$1].push($2);
+                            } else {
+                                params[$1] = [params[$1], $2];
+                            }
+                        } else {
+                            params[$1] = $2;
+                        }
+                    }
+                });
+                return params;
+            });
+
+            var url = 'http://www.example.com?foo=bar&foo=pub&lipsum=lorem&lipsum=ipsum&lipsum=dolor#foobar/bing/bo@ng?bang';
+            var expected = {
+                "hash": "#foobar/bing/bo@ng?bang",
+                "search": "?foo=bar&foo=pub&lipsum=lorem&lipsum=ipsum&lipsum=dolor",
+                "pathname": "",
+                "port": "",
+                "hostname": "www.example.com",
+                "host": "www.example.com",
+                "password": "",
+                "username": "",
+                "protocol": "http:",
+                "origin": "http://www.example.com",
+                "href": "http://www.example.com?foo=bar&foo=pub&lipsum=lorem&lipsum=ipsum&lipsum=dolor#foobar/bing/bo@ng?bang",
+                "params": {
+                    "foo": [
+                        "bar",
+                        "pub"
+                    ],
+                    "lipsum": [
+                        "lorem",
+                        "ipsum",
+                        "dolor"
+                    ]
+                }
+            };
+            var actual = liteURL(url);
+            assert.deepEqual(actual, expected, "liteURL didn't use new parser for query params in: " + JSON.stringify(url));
         });
     </script>
 </head>
