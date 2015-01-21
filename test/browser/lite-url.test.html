@@ -21,7 +21,7 @@
                 "expected":{
                     "hash": "",
                     "search": "",
-                    "pathname": "",
+                    "pathname": "/",
                     "port": "",
                     "hostname": "www.example.com",
                     "host": "www.example.com",
@@ -29,8 +29,44 @@
                     "username": "",
                     "protocol": "http:",
                     "origin": "http://www.example.com",
-                    "href": "http://www.example.com",
+                    "href": "http://www.example.com/",
                     "params": {}
+                }
+            },
+            {
+                "arguments":['http://www.example.com/#asdf'],
+                "expected":{
+                    "hash": "#asdf",
+                    "search": "",
+                    "pathname": "/",
+                    "port": "",
+                    "hostname": "www.example.com",
+                    "host": "www.example.com",
+                    "password": "",
+                    "username": "",
+                    "protocol": "http:",
+                    "origin": "http://www.example.com",
+                    "href": "http://www.example.com/#asdf",
+                    "params": {}
+                }
+            },
+            {
+                "arguments":['http://www.example.com?foo=bar'],
+                "expected":{
+                    "hash": "",
+                    "search": "?foo=bar",
+                    "pathname": "/",
+                    "port": "",
+                    "hostname": "www.example.com",
+                    "host": "www.example.com",
+                    "password": "",
+                    "username": "",
+                    "protocol": "http:",
+                    "origin": "http://www.example.com",
+                    "href": "http://www.example.com/?foo=bar",
+                    "params": {
+                        "foo": "bar"
+                    }
                 }
             },
             {
@@ -55,7 +91,7 @@
                 "expected":{
                     "hash": "#foobar/bing/bo@ng?bang",
                     "search": "?foo=bar&bingobang=&king=kong@kong.com",
-                    "pathname": "",
+                    "pathname": "/",
                     "port": "",
                     "hostname": "www.example.com",
                     "host": "www.example.com",
@@ -63,7 +99,7 @@
                     "username": "",
                     "protocol": "http:",
                     "origin": "http://www.example.com",
-                    "href": "http://www.example.com?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang",
+                    "href": "http://www.example.com/?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang",
                     "params": {
                         "foo": "bar",
                         "bingobang": "",
@@ -114,8 +150,8 @@
                 }
             },
             {
-                "arguments":['?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?b#ang'],
-                "expected":{
+                "arguments": ['?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?b#ang'],
+                "expected": {
                     "hash": "#foobar/bing/bo@ng?b#ang",
                     "search": "?foo=bar&bingobang=&king=kong@kong.com",
                     "pathname": "",
@@ -139,7 +175,7 @@
                 "expected":{
                     "hash": "#foobar/bing/bo@ng?bang",
                     "search": "?foo=bar&bingobang=&king=kong@kong.com",
-                    "pathname": "",
+                    "pathname": "/",
                     "port": "",
                     "hostname": "192.20.10.112",
                     "host": "192.20.10.112",
@@ -147,42 +183,26 @@
                     "username": "",
                     "protocol": "http:",
                     "origin": "http://192.20.10.112",
-                    "href": "http://192.20.10.112?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang",
+                    "href": "http://192.20.10.112/?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang",
                     "params": {
                         "foo": "bar",
                         "bingobang": "",
                         "king": "kong@kong.com"
                     }
                 }
-            },
-            {
-                "arguments":['http:'],
-                "expected":{
-                    "hash": "",
-                    "search": "",
-                    "pathname": "",
-                    "port": "",
-                    "hostname": "",
-                    "host": "",
-                    "password": "",
-                    "username": "",
-                    "protocol": "http:",
-                    "origin": "http:",
-                    "href": "http:",
-                    "params": {}
-                }
             }
         ];
-        QUnit.test("test urls", function(assert){
-            expect(tests.length);
-            for (var i in tests) {
-                if (tests.hasOwnProperty(i)) {
-                    var test = tests[i];
-                    var actual = liteURL.call(this,test.arguments);
-                    assert.deepEqual(actual, test.expected, "liteURL didn't like: " + JSON.stringify(test.arguments));
-                }
+        for (var i in tests) {
+            if (tests.hasOwnProperty(i)) {
+                var test = tests[i];
+                (function(test){
+                    QUnit.test("test url: " + test.arguments[0], function(assert){
+                        var actual = liteURL.apply(this, test.arguments);
+                        assert.deepEqual(actual, test.expected, "liteURL didn't like: " + JSON.stringify(test.arguments));
+                    });
+                })(test);
             }
-        });
+        }
         QUnit.test("query parser", function(assert){
             liteURL.changeQueryParser(function (uri) {
                 var params = {};
@@ -210,7 +230,7 @@
             var expected = {
                 "hash": "#foobar/bing/bo@ng?bang",
                 "search": "?foo=bar&foo=pub&lipsum=lorem&lipsum=ipsum&lipsum=dolor",
-                "pathname": "",
+                "pathname": "/",
                 "port": "",
                 "hostname": "www.example.com",
                 "host": "www.example.com",
@@ -218,7 +238,7 @@
                 "username": "",
                 "protocol": "http:",
                 "origin": "http://www.example.com",
-                "href": "http://www.example.com?foo=bar&foo=pub&lipsum=lorem&lipsum=ipsum&lipsum=dolor#foobar/bing/bo@ng?bang",
+                "href": "http://www.example.com/?foo=bar&foo=pub&lipsum=lorem&lipsum=ipsum&lipsum=dolor#foobar/bing/bo@ng?bang",
                 "params": {
                     "foo": [
                         "bar",

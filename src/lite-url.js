@@ -19,26 +19,109 @@
     var queryParserRegex = /(?:^|&)([^&=]*)=?([^&]*)/g;
 
     /**
-     * For parsing a url into component parts
-     * there are other parts which are suppressed (?:) but we only want to represent what would be available
-     *  from `(new URL(urlstring))` in this api.
-     *
-     * @type {RegExp}
+     * splits a string on the first occurance of 'splitter' and calls back with the two entries.
+     * @param {string} str
+     * @param {string} splitter
+     * @param {function} callback
+     * @return *
      */
-    var uriParser = /^(?:(?:(([^:\/#\?]+:)?(?:(?:\/\/)(?:(?:(?:([^:@\/#\?]+)(?:\:([^:@\/#\?]*))?)@)?(([^:\/#\?\]\[]+|\[[^\/\]@#?]+\])(?:\:([0-9]+))?))?)?)?((?:\/?(?:[^\/\?#]+\/+)*)(?:[^\?#]*)))?(\?[^#]+)?)(#.*)?/;
-    var keys = [
-        "href",                    // http://user:pass@host.com:81/directory/file.ext?query=1#anchor
-        "origin",                  // http://user:pass@host.com:81
-        "protocol",                // http:
-        "username",                // user
-        "password",                // pass
-        "host",                    // host.com:81
-        "hostname",                // host.com
-        "port",                    // 81
-        "pathname",                // /directory/file.ext
-        "search",                  // ?query=1
-        "hash"                     // #anchor
-    ];
+    function splitOnFirst(str, splitter, callback) {
+        var parts = str.split(splitter);
+        var first = parts.shift();
+        return callback(first, parts.join(splitter));
+    }
+
+    /**
+     *
+     * @param {string} str - the url to parse
+     * @returns {{
+     * href: string       // http://user:pass@host.com:81/directory/file.ext?query=1#anchor
+     * protocol: string,  // http:
+     * origin: string,    // http://user:pass@host.com:81
+     * host: string,      // host.com:81
+     * hostname: string,  // host.com
+     * port: string,      // 81
+     * pathname: string,  // /directory/file.ext
+     * search: string,    // ?query=1
+     * hash: string,      // #anchor
+     * username: string,  // user
+     * password: string,  // pass
+     * username: string,  // user
+     * }}
+     */
+    function uriParser(str) {
+        var uri = {
+            hash:'',
+            host:'',
+            hostname:'',
+            origin:'',
+            pathname:'',
+            protocol:'',
+            search:'',
+            password:'',
+            username:'',
+            port:''
+        };
+        // http://user:pass@host.com:81/directory/file.ext?query=1#anchor
+        splitOnFirst(str, '#', function(nonHash, hash) {
+            // http://user:pass@host.com:81/directory/file.ext?query=1, anchor
+            if (hash) {
+                // #anchor
+                uri.hash = hash ? '#' + hash : '';
+            }
+            // http://user:pass@host.com:81/directory/file.ext?query=1
+            splitOnFirst(nonHash, '?', function(nonSearch, search) {
+                // http://user:pass@host.com:81/directory/file.ext, query=1
+                if (search) {
+                    // ?query=1
+                    uri.search = '?' + search;
+                }
+                if (!nonSearch) {
+                    //means we were given a query string only
+                    return;
+                }
+                // http://user:pass@host.com:81/directory/file.ext
+                splitOnFirst(nonSearch, '//', function(protocol, hostUserPortPath) {
+                    // http:, user:pass@host.com:81/directory/file.ext
+                    uri.protocol = protocol;
+                    splitOnFirst(hostUserPortPath, '/', function(hostUserPort, path) {
+                        // user:pass@host.com:81, directory/file.ext
+                        uri.pathname = '/' + (path || ''); // /directory/file.ext
+                        if (uri.protocol || hostUserPort) {
+                            // http://user:pass@host.com:81
+                            uri.origin = uri.protocol + '//' + hostUserPort;
+                        }
+                        // user:pass@host.com:81
+                        splitOnFirst(hostUserPort, '@', function(auth, hostPort){
+                            // user:pass, host.com:81
+                            if (!hostPort) {
+                                hostPort = auth;
+                            } else {
+                                // user:pass
+                                var userPass = auth.split(':');
+                                uri.username = userPass[0];// user
+                                uri.password = userPass[1];// pass
+                            }
+                            // host.com:81
+                            uri.host = hostPort;
+                            splitOnFirst(hostPort, ':', function(hostName, port){
+                                // host.com, 81
+                                uri.hostname = hostName; // host.com
+                                if (port) {
+                                    uri.port = port; // 81
+                                }
+                            });
+                        });
+                    });
+
+                });
+            });
+        });
+
+        uri.href = uri.origin + uri.pathname + uri.search + uri.hash;
+
+        return uri;
+    }
 
     /**
      * @param {string} uri
@@ -84,20 +167,10 @@
 
         if (typeof uri !== 'undefined') {
             return uri;
-        } else {
-            //final object to return
-            uri = {};
         }
 
         //parsed url
-        var matches   = uriParser.exec(str);
-
-        //number of indexes pulled from the url via the urlParser (see 'keys')
-        var i   = keys.length;
-
-        while (i--) {
-            uri[keys[i]] = matches[i] || '';
-        }
+        uri = uriParser(str);
 
         uri.params = queryParser(uri);
 
@@ -107,9 +180,6 @@
         return uri;
     }
 
-    /**
-     * @callback queryParser
-     */
     liteURL.changeQueryParser = function(parser) {
         queryParser = parser;
     };

@@ -39,8 +39,18 @@ grab the minified version from `dist/`
  this is only really useful if you are using [browserify](http://browserify.org/) and want to keep the size down).
 
 
-## query parser
+## 2 variations from chrome
 
+### 1. more permissive
+
+The following will parse in this lib but not in chrome (this is intentional):
+
+1. new URL('//user:pass@example.com:8080/directory/file.ext?query=1#anchor'); //results in empty protocol
+1. new URL('?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?b#ang'); //populates only href, hash, search, params
+
+Both of the above would throw an error in chrome's native URL() parser.
+
+### 2. query parser
 
 Technically, there shouldn't be a parsed version of the query in the result (since the Chrome URL parser doesn't do this).  
 
