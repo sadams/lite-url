@@ -13,12 +13,6 @@
     var memo = {};
 
     /**
-     * For parsing query params out
-     * @type {RegExp}
-     */
-    var queryParserRegex = /(?:^|&)([^&=]*)=?([^&]*)/g;
-
-    /**
      * splits a string on the first occurance of 'splitter' and calls back with the two entries.
      * @param {string} str
      * @param {string} splitter
@@ -129,15 +123,17 @@
      */
     function queryParser(uri) {
         var params = {};
-
-        //strip the question mark from search
-        var query = uri.search ? uri.search.substring( uri.search.indexOf('?') + 1 ) : '';
-        query.replace(queryParserRegex, function ($0, $1, $2) {
-            //query isn't actually modified, .replace() is used as an iterator to populate params
-            if ($1) {
-                params[$1] = $2;
+        var search = uri.search;
+        if (search) {
+            search = search.replace(new RegExp('^&|\\?'), '');
+            var pairs = search.split('&');
+            for (var i in pairs) {
+                if (pairs.hasOwnProperty(i) && pairs[i]) {
+                    var pair = pairs[i].split('=');
+                    params[pair[0]] = pair[1];
+                }
             }
-        });
+        }
         return params;
     }
 

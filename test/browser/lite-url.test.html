@@ -190,6 +190,26 @@
                         "king": "kong@kong.com"
                     }
                 }
+            },
+            {
+                "arguments":['http://192.20.10.112?&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang'],
+                "expected":{
+                    "hash": "#foobar/bing/bo@ng?bang",
+                    "search": "?&bingobang=&king=kong@kong.com",
+                    "pathname": "/",
+                    "port": "",
+                    "hostname": "192.20.10.112",
+                    "host": "192.20.10.112",
+                    "password": "",
+                    "username": "",
+                    "protocol": "http:",
+                    "origin": "http://192.20.10.112",
+                    "href": "http://192.20.10.112/?&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?bang",
+                    "params": {
+                        "bingobang": "",
+                        "king": "kong@kong.com"
+                    }
+                }
             }
         ];
         for (var i in tests) {

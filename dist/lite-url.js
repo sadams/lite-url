@@ -14,26 +14,21 @@
     var memo = {};
 
     /**
-     * For parsing query params out
-     * @type {RegExp}
-     */
-    var queryParserRegex = /(?:^|&)([^&=]*)=?([^&]*)/g;
-
-    /**
-     *
-     * @param str
-     * @param splitter
-     * @param callback
+     * splits a string on the first occurance of 'splitter' and calls back with the two entries.
+     * @param {string} str
+     * @param {string} splitter
+     * @param {function} callback
+     * @return *
      */
     function splitOnFirst(str, splitter, callback) {
         var parts = str.split(splitter);
         var first = parts.shift();
-        callback(first, parts.join(splitter));
+        return callback(first, parts.join(splitter));
     }
 
     /**
      *
-     * @param {string} str
+     * @param {string} str - the url to parse
      * @returns {{
      * href: string       // http://user:pass@host.com:81/directory/file.ext?query=1#anchor
      * protocol: string,  // http:
@@ -129,15 +124,17 @@
      */
     function queryParser(uri) {
         var params = {};
-
-        //strip the question mark from search
-        var query = uri.search ? uri.search.substring( uri.search.indexOf('?') + 1 ) : '';
-        query.replace(queryParserRegex, function ($0, $1, $2) {
-            //query isn't actually modified, .replace() is used as an iterator to populate params
-            if ($1) {
-                params[$1] = $2;
+        var search = uri.search;
+        if (search) {
+            search = search.replace(new RegExp('^&|\\?'), '');
+            var pairs = search.split('&');
+            for (var i in pairs) {
+                if (pairs.hasOwnProperty(i) && pairs[i]) {
+                    var pair = pairs[i].split('=');
+                    params[pair[0]] = pair[1];
+                }
             }
-        });
+        }
         return params;
     }
 
