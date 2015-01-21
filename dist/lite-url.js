@@ -126,7 +126,7 @@
         var params = {};
         var search = uri.search;
         if (search) {
-            search = search.replace(new RegExp('^&|\\?'), '');
+            search = search.replace(new RegExp('\\?'), '');
             var pairs = search.split('&');
             for (var i in pairs) {
                 if (pairs.hasOwnProperty(i) && pairs[i]) {

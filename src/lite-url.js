@@ -13,7 +13,7 @@
     var memo = {};
 
     /**
-     * splits a string on the first occurance of 'splitter' and calls back with the two entries.
+     * splits a string on the first occurrance of 'splitter' and calls back with the two entries.
      * @param {string} str
      * @param {string} splitter
      * @param {function} callback
@@ -125,7 +125,7 @@
         var params = {};
         var search = uri.search;
         if (search) {
-            search = search.replace(new RegExp('^&|\\?'), '');
+            search = search.replace(new RegExp('\\?'), '');
             var pairs = search.split('&');
             for (var i in pairs) {
                 if (pairs.hasOwnProperty(i) && pairs[i]) {
