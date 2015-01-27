@@ -4,7 +4,7 @@
     "authors": [
         "Sam Adams <adams.sam@gmail.com>"
     ],
-    "description": "Small, JS lib that uses regex for parsing a URL into it's component parts.",
+    "description": "Small JS lib that uses RegEx to parse a URL into its component parts.",
 
     "keywords": [
         "url",

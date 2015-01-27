@@ -1,6 +1,6 @@
 # lite-url
 
-Small, JS lib that uses regex for parsing a URL into it's component parts.
+Small JS lib that uses RegEx to parse a URL into its component parts.
 
 Broadly provides the same interface as the native [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL) function, 
 but in a cross browser way (taken from Chrome 35):
