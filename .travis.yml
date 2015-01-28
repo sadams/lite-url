@@ -2,10 +2,6 @@ language: node_js
 node_js:
   - "0.11"
   - "0.10"
-env:
-  global:
-    - secure: P17MGnBrMmsyumgIZxqyL8uBv/f9KNHcpTTfCaMbDKKwKzjdIHnIjxg9PmNIhtLhjWjHJ7Jom+VY0y1j+hy3M+zyzzUe6CRsSsY9+0yGnhzcYym65wFay7f+RNEydqsLdVLMxT5pYtVc5oHRp5gnAj2qfoQNl3FD2tYh3DsjpV8=
-    - secure: dgbqgzIHYIelF0oO2Bf+g3NZBQbRnGr6q9c36O+OveDX5MvcUjAMhBKAXQV+LXCgyeUBoPHUqp7d9V0v4X2MPxH4bp+smah2kvqWvmN45RGx769IV3S+IIkPdB8ujIIoVxLsBXqQQFwcMr4fIQoAZzq3s6nrDbUdAs1MkxG6NeQ=
 before_script:
   - npm install -g gulp
   - npm install -g bower
@@ -13,4 +9,8 @@ before_script:
 script:
   - gulp bigtest
 addons:
-  sauce_connect: true
+  sauce_connect:
+    username:
+      secure: "Oz6XTWAYPZ6ei7yJQ3TspAKQMgrUqDdGsG8EhparEIPvfdcdoiT5Zz7HRqmnar9TRUMYItbtzgtdXbX2vV62MtQObJV+VlMq1VmwuUaUtjMvVt2Pp1I4hejeSYbgBgITkOcWD8/Bf8CFRRcd9KI9GF//Q1hvUucIvwxy/wRVfb0="
+    access_key:
+      secure: "TELq6D/n9s8W1gBfCccK7B5BnRQ5Ls/yzo3yUV53onucmY6U8BjmU7EocDDZ0Xbfda1W9HM/YTXq3ztxWb9YAxz/EaKHkdIOd3ztAXlogO+IbYBPcl+42Ydv6JA11lgUCAumYqr7WeBndzJJQkTabyqEOD5V4FFK+h/z7oHQ4Xw="
