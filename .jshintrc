@@ -1,0 +1,22 @@
+{
+    "node":true,
+    "bitwise": true,
+    "curly": true,
+    "eqeqeq": true,
+    "forin": true,
+    "immed": false,
+    "latedef": false,
+    "newcap": true,
+    "noarg": true,
+    "quotmark": "single",
+    "undef": true,
+    "unused": true,
+    "trailing": true,
+    "es3":true,
+    "camelcase": false,
+    "white": false,
+    "evil": false,
+    "browser": true,
+    "eqnull": true,
+    "sub": true
+}

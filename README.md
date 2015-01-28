@@ -1,6 +1,13 @@
+[![NPM](https://nodei.co/npm/lite-url.png?downloads=true)](https://nodei.co/npm/lite-url/)
+
+[![Travis build status](https://travis-ci.org/sadams/lite-url.png)](https://travis-ci.org/sadams/lite-url)
+[![dependencies](https://david-dm.org/sadams/lite-url.png)](https://david-dm.org/sadams/lite-url)
+
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/samadams83.svg)](https://saucelabs.com/u/samadams83)
+
 # lite-url
 
-Small, JS lib that uses regex for parsing a URL into it's component parts.
+Small JS lib that uses RegEx to parse a URL into its component parts.
 
 Broadly provides the same interface as the native [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL) function, 
 but in a cross browser way (taken from Chrome 35):
@@ -39,8 +46,18 @@ grab the minified version from `dist/`
  this is only really useful if you are using [browserify](http://browserify.org/) and want to keep the size down).
 
 
-## query parser
+## 2 variations from chrome
 
+### 1. more permissive
+
+The following will parse in this lib but not in chrome (this is intentional):
+
+1. new URL('//user:pass@example.com:8080/directory/file.ext?query=1#anchor'); //results in empty protocol
+1. new URL('?foo=bar&bingobang=&king=kong@kong.com#foobar/bing/bo@ng?b#ang'); //populates only href, hash, search, params
+
+Both of the above would throw an error in chrome's native URL() parser.
+
+### 2. query parser
 
 Technically, there shouldn't be a parsed version of the query in the result (since the Chrome URL parser doesn't do this).  
 
@@ -100,3 +117,40 @@ The URL object in Chrome etc doesn't quite fit with other interpretations of the
     - can't get authentication info from URL
  - https://developer.mozilla.org/en-US/docs/Web/API/URL 
     - not cross browser
+
+## developing
+
+### testing
+
+    npm install -g gulp
+    npm install && bower install
+    gulp
+
+#### crossbrowser testing with saucelabs
+
+using config file:
+
+    cp saucelabs.example.json saucelabs.json
+
+add your saucelabs username/secret key, and run:
+
+    npm test
+
+you can do the same on cmdline with:
+
+    export SAUCE_USERNAME='your username' && export SAUCE_ACCESS_KEY='your key' && npm test
+
+#### CI
+
+New branches should be automatically tested using travis ci. 
+It should be able to connect to saucelabs using the encrypted details in `.travis.tml`:
+    
+https://docs.saucelabs.com/ci-integrations/travis-ci/#adding-credentials-for-a-public-github-repo
+
+### building
+
+for npm (assuming setup correctly with npm)
+
+    npm publish
+    
+for bower, just tag correct semver and push to github.
