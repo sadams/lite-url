@@ -1,13 +1,14 @@
-var saucelabsConf;
-try {
-    saucelabsConf = {
-        username: require('./saucelabs.json').username,
-        accessKey: require('./saucelabs.json').accessKey,
-        testName: 'lite-url crossbrowers'
-    };
-} catch (e) {
-    //we don't have the saucelabs config so we assume it's handled by environment vars and just allow it to continue.
-    //explained in readme.md
+var fs = require('fs');
+
+// Use ENV vars on Travis and sauce.json locally to get credentials
+if (!process.env.SAUCE_USERNAME) {
+    if (!fs.existsSync('saucelabs.json')) {
+        console.log('Missing local sauce.json with SauceLabs credentials.');
+        process.exit(1);
+    } else {
+        process.env.SAUCE_USERNAME = require('./saucelabs').username;
+        process.env.SAUCE_ACCESS_KEY = require('./saucelabs').accessKey;
+    }
 }
 module.exports = function(config) {
     var customLaunchers = {
@@ -72,12 +73,22 @@ module.exports = function(config) {
         // base path, that will be used to resolve files and exclude
         basePath: '',
 
-        sauceLabs: saucelabsConf,
+        sauceLabs: {
+            accessKey: process.env.SAUCE_KEY,
+            'idle-timeout': 1000,
+            recordScreenshots: false,
+            testName: 'lite-url crossbrowers',
+            username: process.env.SAUCE_USER
+        },
         customLaunchers: customLaunchers,
         browsers: Object.keys(customLaunchers),
+        browserDisconnectTimeout: 60 * 1000,
+        browserDisconnectTolerance: 2,
+        browserNoActivityTimeout: 60 * 1000,
+        // If browser does not capture in given timeout [ms], kill it
+        captureTimeout: 60 * 1000,
         reporters: ['dots', 'saucelabs'],
         singleRun: true,
-
 
         // frameworks to use
         frameworks: ['qunit'],
@@ -100,9 +111,17 @@ module.exports = function(config) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_INFO,
-
-        // If browser does not capture in given timeout [ms], kill it
-        captureTimeout: 60000
+        logLevel: config.LOG_INFO
     });
+    if (process.env.TRAVIS) {
+        config.sauceLabs.build = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')';
+
+        if (process.env.BROWSER_PROVIDER === 'saucelabs' || !process.env.BROWSER_PROVIDER) {
+            // Allocating a browser can take pretty long (eg. if we are out of capacity
+            // and need to wait for another build to finish) and so the
+            // `captureTimeout` typically kills an in-queue-pending request, which
+            // makes no sense.
+            config.captureTimeout = 0;
+        }
+    }
 };

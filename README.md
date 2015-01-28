@@ -3,6 +3,8 @@
 [![Travis build status](https://travis-ci.org/sadams/lite-url.png)](https://travis-ci.org/sadams/lite-url)
 [![dependencies](https://david-dm.org/sadams/lite-url.png)](https://david-dm.org/sadams/lite-url)
 
+[![Sauce Test Status](https://saucelabs.com/sadams/lite-url.svg)](https://saucelabs.com/u/sadams/lite-url)
+
 # lite-url
 
 Small, JS lib that uses regex for parsing a URL into it's component parts.
