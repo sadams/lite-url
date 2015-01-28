@@ -13,7 +13,7 @@
     var memo = {};
 
     /**
-     * splits a string on the first occurrance of 'splitter' and calls back with the two entries.
+     * splits a string on the first occurrence of 'splitter' and calls back with the two entries.
      * @param {string} str
      * @param {string} splitter
      * @param {function} callback

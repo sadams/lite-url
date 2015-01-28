@@ -1,34 +1,37 @@
 {
-    "name": "lite-url",
-    "version": "0.2.1",
-    "authors": [
-        "Sam Adams <adams.sam@gmail.com>"
-    ],
-    "description": "Small, JS lib that uses regex for parsing a URL into it's component parts.",
-
-    "keywords": [
-        "url",
-        "uri",
-        "url parsing"
-    ],
-    "license": "WTFPL",
-    "bugs": "https://github.com/sadams/lite-url/issues",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/sadams/lite-url.git"
-    },
-    "main": "dist/lite-url.min.js",
-    "scripts": {
-        "test": "grunt test"
-    },
-    "devDependencies": {
-        "grunt": "^0.4.5",
-        "grunt-contrib-concat": "^0.5.0",
-        "grunt-contrib-connect": "^0.8.0",
-        "grunt-contrib-jshint": "^0.10.0",
-        "grunt-contrib-nodeunit": "^0.4.1",
-        "grunt-contrib-qunit": "^0.5.1",
-        "grunt-contrib-uglify": "^0.5.0",
-        "grunt-wiredep": "^1.8.0"
-    }
+  "name": "lite-url",
+  "version": "1.0.0",
+  "authors": [
+    "Sam Adams <adams.sam@gmail.com>"
+  ],
+  "description": "Small, JS lib that uses regex for parsing a URL into it's component parts.",
+  "keywords": [
+    "url",
+    "uri",
+    "url parsing"
+  ],
+  "license": "WTFPL",
+  "homepage": "https://github.com/sadams/lite-url",
+  "bugs": "https://github.com/sadams/lite-url/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sadams/lite-url.git"
+  },
+  "main": "dist/lite-url.min.js",
+  "scripts": {
+    "test": "gulp"
+  },
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-header": "^1.2.2",
+    "gulp-jshint": "^1.9.0",
+    "gulp-karma": "0.0.4",
+    "gulp-load-plugins": "^0.8.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "^1.1.0",
+    "karma": "^0.12.31",
+    "karma-qunit": "^0.1.4",
+    "karma-sauce-launcher": "^0.2.10",
+    "node-qunit-phantomjs": "^1.2.0"
+  }
 }

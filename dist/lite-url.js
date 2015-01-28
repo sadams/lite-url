@@ -1,4 +1,9 @@
-/*! lite-url v0.2.1 21-01-2015 https://github.com/sadams/lite-url.git */
+/**
+ * lite-url - Small, JS lib that uses regex for parsing a URL into it's component parts.
+ * @version v1.0.0
+ * @link https://github.com/sadams/lite-url
+ * @license WTFPL
+ */
 (function(){
     'use strict';
 
@@ -14,7 +19,7 @@
     var memo = {};
 
     /**
-     * splits a string on the first occurance of 'splitter' and calls back with the two entries.
+     * splits a string on the first occurrence of 'splitter' and calls back with the two entries.
      * @param {string} str
      * @param {string} splitter
      * @param {function} callback

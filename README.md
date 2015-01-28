@@ -1,3 +1,8 @@
+[![NPM](https://nodei.co/npm/lite-url.png?downloads=true)](https://nodei.co/npm/lite-url/)
+
+[![Travis build status](https://travis-ci.org/sadams/lite-url.png)](https://travis-ci.org/sadams/lite-url)
+[![dependencies](https://david-dm.org/sadams/lite-url.png)](https://david-dm.org/sadams/lite-url)
+
 # lite-url
 
 Small, JS lib that uses regex for parsing a URL into it's component parts.
