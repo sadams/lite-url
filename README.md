@@ -3,7 +3,7 @@
 [![Travis build status](https://travis-ci.org/sadams/lite-url.png)](https://travis-ci.org/sadams/lite-url)
 [![dependencies](https://david-dm.org/sadams/lite-url.png)](https://david-dm.org/sadams/lite-url)
 
-[![Sauce Test Status](https://saucelabs.com/sadams/lite-url.svg)](https://saucelabs.com/u/sadams/lite-url)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/samadams83.svg)](https://saucelabs.com/u/samadams83)
 
 # lite-url
 
@@ -149,5 +149,8 @@ https://docs.saucelabs.com/ci-integrations/travis-ci/#adding-credentials-for-a-p
 
 ### building
 
-TODO: publishing with npm && bower
+for npm (assuming setup correctly with npm)
 
+    npm publish
+    
+for bower, just tag correct semver and push to github.
