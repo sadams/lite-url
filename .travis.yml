@@ -8,8 +8,9 @@ env:
     - secure: dgbqgzIHYIelF0oO2Bf+g3NZBQbRnGr6q9c36O+OveDX5MvcUjAMhBKAXQV+LXCgyeUBoPHUqp7d9V0v4X2MPxH4bp+smah2kvqWvmN45RGx769IV3S+IIkPdB8ujIIoVxLsBXqQQFwcMr4fIQoAZzq3s6nrDbUdAs1MkxG6NeQ=
 before_script:
   - npm install -g gulp
+  - npm install -g bower
+  - bower install
 script:
-  - gulp
   - gulp bigtest
 addons:
   sauce_connect: true
