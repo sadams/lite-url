@@ -115,3 +115,37 @@ The URL object in Chrome etc doesn't quite fit with other interpretations of the
     - can't get authentication info from URL
  - https://developer.mozilla.org/en-US/docs/Web/API/URL 
     - not cross browser
+
+## developing
+
+### testing
+
+    npm install -g gulp
+    npm install && bower install
+    gulp
+
+#### crossbrowser testing with saucelabs
+
+using config file:
+
+    cp saucelabs.example.json saucelabs.json
+
+add your saucelabs username/secret key, and run:
+
+    gulp bigtest 
+
+you can do the same on cmdline with:
+
+    export SAUCE_USERNAME='your username' && export SAUCE_ACCESS_KEY='your key' && gulp bigtest
+
+#### CI
+
+New branches should be automatically tested using travis ci. 
+It should be able to connect to saucelabs using the encrypted details in `.travis.tml`:
+    
+https://docs.saucelabs.com/ci-integrations/travis-ci/#adding-credentials-for-a-public-github-repo
+
+### building
+
+TODO: publishing with npm && bower
+

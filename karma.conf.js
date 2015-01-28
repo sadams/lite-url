@@ -1,4 +1,14 @@
-var saucelabsConf = require('./saucelabs.json');
+var saucelabsConf;
+try {
+    saucelabsConf = {
+        username: require('./saucelabs.json').username,
+        accessKey: require('./saucelabs.json').accessKey,
+        testName: 'lite-url crossbrowers'
+    };
+} catch (e) {
+    //we don't have the saucelabs config so we assume it's handled by environment vars and just allow it to continue.
+    //explained in readme.md
+}
 module.exports = function(config) {
     var customLaunchers = {
         sl_chrome_linux: {
@@ -62,11 +72,7 @@ module.exports = function(config) {
         // base path, that will be used to resolve files and exclude
         basePath: '',
 
-        sauceLabs: {
-            username: saucelabsConf.username,
-            accessKey: saucelabsConf.accessKey,
-            testName: 'Web App Unit Tests'
-        },
+        sauceLabs: saucelabsConf,
         customLaunchers: customLaunchers,
         browsers: Object.keys(customLaunchers),
         reporters: ['dots', 'saucelabs'],
