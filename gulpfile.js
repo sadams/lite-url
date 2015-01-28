@@ -30,22 +30,6 @@ gulp.task('qunit', function() {
     return qunit('./test/browser/lite-url.test.html');
 });
 
-gulp.task('bigtest', ['default'], function(){
-    return gulp.src([
-        './dist/lite-url.min.js',
-        './test/browser/*.test.js'
-    ])
-        .pipe(plugins.karma({
-            configFile: 'karma.conf.js',
-            action: 'run'
-        }))
-        .on('error', function(err) {
-            // Make sure failed tests cause gulp to exit non-zero
-            throw err;
-        })
-    ;
-});
-
 gulp.task('lint', function() {
     return gulp.src(['./src/*.js','gulpfile.js','karma.conf.js'])
         .pipe(plugins.jshint())

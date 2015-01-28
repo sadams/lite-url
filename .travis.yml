@@ -1,16 +1,11 @@
 language: node_js
 node_js:
-  - "0.11"
   - "0.10"
 before_script:
   - npm install -g gulp
   - npm install -g bower
   - bower install
-script:
-  - gulp bigtest
-addons:
-  sauce_connect:
-    username:
-      secure: "Oz6XTWAYPZ6ei7yJQ3TspAKQMgrUqDdGsG8EhparEIPvfdcdoiT5Zz7HRqmnar9TRUMYItbtzgtdXbX2vV62MtQObJV+VlMq1VmwuUaUtjMvVt2Pp1I4hejeSYbgBgITkOcWD8/Bf8CFRRcd9KI9GF//Q1hvUucIvwxy/wRVfb0="
-    access_key:
-      secure: "TELq6D/n9s8W1gBfCccK7B5BnRQ5Ls/yzo3yUV53onucmY6U8BjmU7EocDDZ0Xbfda1W9HM/YTXq3ztxWb9YAxz/EaKHkdIOd3ztAXlogO+IbYBPcl+42Ydv6JA11lgUCAumYqr7WeBndzJJQkTabyqEOD5V4FFK+h/z7oHQ4Xw="
+env:
+  global:
+    - secure: EatnSoK1vMKvuxXYuPomO4nfk1IRAHK2Ai88NhTvm+y6U5m22Xeo6ROVN5SwnMqiiHRpkqXJKiBrRUldyNX8iemt1HhkjLcoUnAvqHYescYzt/2re32KtWVuCq5pBYFfE+zDJzDPC+XpHSkfINO95vec4BQc/fZ1cqhiM76OhKc=
+    - secure: LvznPzWRU8hAY6j/oMT6CxHdR6yZqiqaw6hjPILFZLJSrYi11DWV6oE45zmZy1ErW6O0N7iNp89kKLCkJJS27lrb5oynkWLBGpthFTv71JGrmyVfArLjg+RZo33I4Rvcsp4aCUys8e3m0yuIOGQg430k6yInbXyNppUG6FJClDw=

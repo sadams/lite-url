@@ -95,7 +95,10 @@ module.exports = function(config) {
 
         // list of files / patterns to load in the browser
         //passed in from gulp
-//        files:[],
+        files:[
+            './dist/lite-url.min.js',
+            './test/browser/*.test.js'
+        ],
 
         // Log output from the `sc` process to stdout?
         verbose: false,

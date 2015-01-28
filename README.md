@@ -134,11 +134,11 @@ using config file:
 
 add your saucelabs username/secret key, and run:
 
-    gulp bigtest 
+    npm test
 
 you can do the same on cmdline with:
 
-    export SAUCE_USERNAME='your username' && export SAUCE_ACCESS_KEY='your key' && gulp bigtest
+    export SAUCE_USERNAME='your username' && export SAUCE_ACCESS_KEY='your key' && npm test
 
 #### CI
 
