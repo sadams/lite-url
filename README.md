@@ -3,7 +3,7 @@
 [![Travis build status](https://travis-ci.org/sadams/lite-url.png)](https://travis-ci.org/sadams/lite-url)
 [![dependencies](https://david-dm.org/sadams/lite-url.png)](https://david-dm.org/sadams/lite-url)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/samadams83.svg)](https://saucelabs.com/u/samadams83)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/samadamslite.svg)](https://saucelabs.com/u/samadamslite)
 
 # lite-url
 
