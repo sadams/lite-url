@@ -3,11 +3,11 @@
 [![Travis build status](https://travis-ci.org/sadams/lite-url.png)](https://travis-ci.org/sadams/lite-url)
 [![dependencies](https://david-dm.org/sadams/lite-url.png)](https://david-dm.org/sadams/lite-url)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/samadams83.svg)](https://saucelabs.com/u/samadams83)
+[![Sauce Test Status](https://saucelabs.com/browser-matrix/samadamslite.svg)](https://saucelabs.com/u/samadamslite)
 
 # lite-url
 
-Small JS lib that uses RegEx to parse a URL into its component parts.
+A small cross-browser JS lib for parsing a URL into its component parts.
 
 Broadly provides the same interface as the native [URL](https://developer.mozilla.org/en-US/docs/Web/API/URL) function, 
 but in a cross browser way (taken from Chrome 35):

@@ -1,11 +1,11 @@
 {
   "name": "lite-url",
   "main": "dist/lite-url.min.js",
-  "version": "0.2.1",
+  "version": "1.0.2",
   "authors": [
     "Sam Adams <adams.sam@gmail.com>"
   ],
-  "description": "Small JS lib that uses RegEx to parse a URL into its component parts.",
+  "description": "A small cross-browser JS lib for parsing a URL into its component parts (generally follows Chrome's `new URL(parseThisUrl)` API).",
   "moduleType": [
     "globals",
     "amd",

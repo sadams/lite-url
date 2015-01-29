@@ -18,12 +18,12 @@ module.exports = function(config) {
             platform: 'linux'
         },
 
-//        sl_chrome_iphone: {
-//            base: 'SauceLabs',
-//            version: '8.1',
-//            browserName: 'iphone',
-//            platform: 'OS X 10.9'
-//        },
+        sl_chrome_iphone: {
+            base: 'SauceLabs',
+            version: '8.1',
+            browserName: 'iphone',
+            platform: 'OS X 10.9'
+        },
 
         sl_chrome_firefox: {
             base: 'SauceLabs',
@@ -31,12 +31,12 @@ module.exports = function(config) {
             platform: 'linux'
         },
 
-//        sl_ie_9: {
-//            base: 'SauceLabs',
-//            browserName: 'internet explorer',
-//            platform: 'Windows 7',
-//            version: '9'
-//        },
+        sl_ie_9: {
+            base: 'SauceLabs',
+            browserName: 'internet explorer',
+            platform: 'Windows 7',
+            version: '9'
+        },
 
         sl_ie_8: {
             base: 'SauceLabs',
@@ -50,9 +50,8 @@ module.exports = function(config) {
             browserName: 'internet explorer',
             platform: 'Windows XP',
             version: '7'
-        }
+        },
 
-//        ,
         //had to test manually
 //        sl_ie_6: {
 //            base: 'SauceLabs',
@@ -61,12 +60,12 @@ module.exports = function(config) {
 //            version: '6'
 //        },
 
-//        sl_android: {
-//            base: 'SauceLabs',
-//            browserName: 'android',
-//            platform: 'linux',
-//            version: '4.0'
-//        }
+        sl_android: {
+            base: 'SauceLabs',
+            browserName: 'android',
+            platform: 'linux',
+            version: '4.0'
+        }
     };
     config.set({
 
