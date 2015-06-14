@@ -19,11 +19,11 @@ module.exports = function(config) {
         basePath: '',
 
         sauceLabs: {
-            accessKey: process.env.SAUCE_KEY,
+            accessKey: process.env.SAUCE_ACCESS_KEY,
             'idle-timeout': 1000,
             recordScreenshots: false,
             testName: 'lite-url crossbrowers',
-            username: process.env.SAUCE_USER
+            username: process.env.SAUCE_USERNAME
         },
         customLaunchers: customLaunchers,
         browsers: Object.keys(customLaunchers),
