@@ -5,6 +5,10 @@ before_script:
 - npm install -g gulp
 - npm install -g bower
 - bower install
+env:
+  global:
+    - secure: JjmiJmPiDTRpg0xns7J++sYjPtyUtMyTqDehFDgOoMoO2MY+mimjS+/S6izaioxI7BvlPySWp84vCI8hOqG4Or2hI0jymOtcXewu4VH5ArVi5vTTdFfBlVS2gdo90EzFVfvQ3zAaVyU2ffO95I+CWXFug5MfNWthziNBXUQ0sSc=
+    - secure: TUf3ZBIEGm9ZohZXPmVXgoFKt2KgpisfGiPuxuVqJcWxx2GrFZtSMaqX066lw2/JXZK9pO7tyaFTX2t0Glgry1LjgTOAo2meI/+3X5E2jHZlBR0RKT1uLZKL+mdLP37KjWOzGL94zhh7zTcaURQGYjOZfCX4TMLwDcX9PwaMycU=
 addons:
   sauce_connect:
     username: samadamslite

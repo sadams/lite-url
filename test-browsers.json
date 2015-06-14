@@ -1,0 +1,48 @@
+{
+    "sl_chrome_linux": {
+        "base": "SauceLabs",
+        "browserName": "chrome",
+        "platform": "linux"
+    },
+    "sl_chrome_iphone": {
+        "base": "SauceLabs",
+        "version": "8.1",
+        "browserName": "iphone",
+        "platform": "OS X 10.9"
+    },
+    "sl_chrome_firefox": {
+        "base": "SauceLabs",
+        "browserName": "firefox",
+        "platform": "linux"
+    },
+    "sl_ie_9": {
+        "base": "SauceLabs",
+        "browserName": "internet explorer",
+        "platform": "Windows 7",
+        "version": "9"
+    },
+    "sl_ie_8": {
+        "base": "SauceLabs",
+        "browserName": "internet explorer",
+        "platform": "Windows 7",
+        "version": "8"
+    },
+    "sl_ie_7": {
+        "base": "SauceLabs",
+        "browserName": "internet explorer",
+        "platform": "Windows XP",
+        "version": "7"
+    },
+    "sl_ie_6": {
+        "base": "SauceLabs",
+        "browserName": "internet explorer",
+        "platform": "Windows XP",
+        "version": "6"
+    },
+    "sl_android": {
+        "base": "SauceLabs",
+        "browserName": "android",
+        "platform": "linux",
+        "version": "4.0"
+    }
+}
