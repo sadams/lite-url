@@ -62,8 +62,15 @@ module.exports = function(config) {
         logLevel: config.LOG_INFO
     });
     if (process.env.TRAVIS) {
+        console.log('travis info: ',
+            process.env.TRAVIS_BUILD_NUMBER,
+            process.env.TRAVIS_BUILD_ID,
+            process.env.BROWSER_PROVIDER,
+            process.env.TRAVIS_JOB_NUMBER,
+            process.env.TRAVIS
+        );
         config.sauceLabs.build = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')';
-        config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_BUILD_NUMBER;
+        config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
         if (process.env.BROWSER_PROVIDER === 'saucelabs' || !process.env.BROWSER_PROVIDER) {
             // Allocating a browser can take pretty long (eg. if we are out of capacity
             // and need to wait for another build to finish) and so the
@@ -71,5 +78,7 @@ module.exports = function(config) {
             // makes no sense.
             config.captureTimeout = 0;
         }
+    } else {
+        console.log('not travis');
     }
 };
