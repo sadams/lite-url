@@ -46,10 +46,10 @@ module.exports = function(config) {
         ],
 
         // Log output from the `sc` process to stdout?
-        verbose: false,
+        verbose: true,
 
         // Enable verbose debugging (optional)
-        verboseDebugging: false,
+        verboseDebugging: true,
 
         // web server port
         port: 9876,
@@ -63,7 +63,7 @@ module.exports = function(config) {
     });
     if (process.env.TRAVIS) {
         config.sauceLabs.build = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')';
-
+        config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_BUILD_NUMBER;
         if (process.env.BROWSER_PROVIDER === 'saucelabs' || !process.env.BROWSER_PROVIDER) {
             // Allocating a browser can take pretty long (eg. if we are out of capacity
             // and need to wait for another build to finish) and so the
