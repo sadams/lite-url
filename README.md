@@ -92,7 +92,7 @@ E.g. If you want duplicate keys to be turned into an array, you could do this:
 
 ## usage
 
-    <script src="tiny-url.min.js"></script>
+    <script src="lite-url.min.js"></script>
     <script>
         var url = 'http://user:pass@example.com:8080/directory/file.ext?query=1#anchor';
         var parsed = new liteURL(url);
