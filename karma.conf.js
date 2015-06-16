@@ -63,7 +63,7 @@ module.exports = function(config) {
     });
     if (process.env.TRAVIS) {
         console.log('env: ',
-            JSON.stringify(process.env);
+            JSON.stringify(process.env)
         );
         config.sauceLabs.build = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')';
         config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
