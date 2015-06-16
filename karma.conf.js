@@ -61,17 +61,4 @@ module.exports = function(config) {
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
         logLevel: config.LOG_INFO
     });
-    if (process.env.TRAVIS) {
-        //config.sauceLabs.build = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')';
-        config.sauceLabs.tunnelIdentifier = process.env.TRAVIS_JOB_NUMBER;
-        config.sauceLabs.build = process.env.TRAVIS_JOB_NUMBER;
-        config.sauceLabs['tunnel-identifier'] = process.env.TRAVIS_JOB_NUMBER;
-        if (process.env.BROWSER_PROVIDER === 'saucelabs' || !process.env.BROWSER_PROVIDER) {
-            // Allocating a browser can take pretty long (eg. if we are out of capacity
-            // and need to wait for another build to finish) and so the
-            // `captureTimeout` typically kills an in-queue-pending request, which
-            // makes no sense.
-            config.captureTimeout = 0;
-        }
-    }
 };

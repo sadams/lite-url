@@ -1,6 +1,5 @@
 [![NPM](https://nodei.co/npm/lite-url.png?downloads=true)](https://nodei.co/npm/lite-url/)
 
-[![Travis build status](https://travis-ci.org/sadams/lite-url.png)](https://travis-ci.org/sadams/lite-url)
 [![dependencies](https://david-dm.org/sadams/lite-url.png)](https://david-dm.org/sadams/lite-url)
 
 [![Sauce Test Status](https://saucelabs.com/browser-matrix/samadamslite.svg)](https://saucelabs.com/u/samadamslite)
@@ -139,13 +138,6 @@ add your saucelabs username/secret key, and run:
 you can do the same on cmdline with:
 
     export SAUCE_USERNAME='your username' && export SAUCE_ACCESS_KEY='your key' && npm test
-
-#### CI
-
-New branches should be automatically tested using travis ci. 
-It should be able to connect to saucelabs using the encrypted details in `.travis.tml`:
-    
-https://docs.saucelabs.com/ci-integrations/travis-ci/#adding-credentials-for-a-public-github-repo
 
 ### building
 
