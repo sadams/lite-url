@@ -8,7 +8,7 @@ before_script:
   - bower install
 env:
   global:
-    - secure: PmrQ8HmfT4ieY1C5hwBaZaag+kv+zLWCcmk+bYAEi7NgUY5k9b/KNBDVtj+67DpmG9mLhS7orHE7Vsd4msBcrfFTSZR5lh17yNSCIUU2RvbAvA8YoDw1Mzrd+Xp9UQNBxYCyyKDXH8nHP/XIy2KNSlJKTaIImmUSVHPHjfLGFsc=
-    - secure: WSE7YC9SAWtu7FFNZNGF2Ybarm4lLLq7Dhu4hGgZsgRWOwC7SMC71PSeZp6eEcPQ2tVelBf+QYwWi6oWdAJLS/SwG4XVr1/bjILyyoz66quqNnlGdgaMvcMFz7R15QiVTjMdxQRGEmmz8ov4a4a2RtR4Xnhw2VJawtggOgeEus8=
+    - secure: MalyfshCdi+yvZSlNEegxVbcRbiFqzXJfmngAD2ExHd6BmnqcEc/OI9lJqYEviKwon4OBWfYCOPXsere0YBJG7hdJPwMRjUflJFgN8pibsopCRoPfAIM4KwWJK57U3Wv7XSkOb/3TRrR0XGv7XTCh42e78XkJJU/dfcu/d5b2wY=
+    - secure: fZLxstss4BJE1mOKMadADoRyumqUprYdaVfRuCfrkNY9f1VAyiwdfB6uWOl5X9atyaOeEG+LYZhKoDS6Yj3rTTjmzF7dO/ledkdNq6Rx83bRfSVjVi4bghVbDR/gvq6jrnhQ3bAP9Py7KuJ50BjQG1f1D4FVoNYWebA4/ZDCL1o=
 addons:
   sauce_connect: true
