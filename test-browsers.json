@@ -1,0 +1,7 @@
+{
+    "sl_chrome_linux": {
+        "base": "SauceLabs",
+        "browserName": "chrome",
+        "platform": "linux"
+    }
+}

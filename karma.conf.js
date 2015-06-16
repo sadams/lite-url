@@ -10,74 +10,20 @@ if (!process.env.SAUCE_USERNAME) {
         process.env.SAUCE_ACCESS_KEY = require('./saucelabs').accessKey;
     }
 }
+
 module.exports = function(config) {
-    var customLaunchers = {
-        sl_chrome_linux: {
-            base: 'SauceLabs',
-            browserName: 'chrome',
-            platform: 'linux'
-        },
-
-        sl_chrome_iphone: {
-            base: 'SauceLabs',
-            version: '8.1',
-            browserName: 'iphone',
-            platform: 'OS X 10.9'
-        },
-
-        sl_chrome_firefox: {
-            base: 'SauceLabs',
-            browserName: 'firefox',
-            platform: 'linux'
-        },
-
-        sl_ie_9: {
-            base: 'SauceLabs',
-            browserName: 'internet explorer',
-            platform: 'Windows 7',
-            version: '9'
-        },
-
-        sl_ie_8: {
-            base: 'SauceLabs',
-            browserName: 'internet explorer',
-            platform: 'Windows 7',
-            version: '8'
-        },
-
-        sl_ie_7: {
-            base: 'SauceLabs',
-            browserName: 'internet explorer',
-            platform: 'Windows XP',
-            version: '7'
-        },
-
-        //had to test manually
-//        sl_ie_6: {
-//            base: 'SauceLabs',
-//            browserName: 'internet explorer',
-//            platform: 'Windows XP',
-//            version: '6'
-//        },
-
-        sl_android: {
-            base: 'SauceLabs',
-            browserName: 'android',
-            platform: 'linux',
-            version: '4.0'
-        }
-    };
+    var customLaunchers = require('./test-browsers.json');
     config.set({
 
         // base path, that will be used to resolve files and exclude
         basePath: '',
 
         sauceLabs: {
-            accessKey: process.env.SAUCE_KEY,
+            accessKey: process.env.SAUCE_ACCESS_KEY,
             'idle-timeout': 1000,
             recordScreenshots: false,
             testName: 'lite-url crossbrowers',
-            username: process.env.SAUCE_USER
+            username: process.env.SAUCE_USERNAME
         },
         customLaunchers: customLaunchers,
         browsers: Object.keys(customLaunchers),
@@ -100,10 +46,10 @@ module.exports = function(config) {
         ],
 
         // Log output from the `sc` process to stdout?
-        verbose: false,
+        verbose: true,
 
         // Enable verbose debugging (optional)
-        verboseDebugging: false,
+        verboseDebugging: true,
 
         // web server port
         port: 9876,
@@ -115,15 +61,4 @@ module.exports = function(config) {
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
         logLevel: config.LOG_INFO
     });
-    if (process.env.TRAVIS) {
-        config.sauceLabs.build = 'TRAVIS #' + process.env.TRAVIS_BUILD_NUMBER + ' (' + process.env.TRAVIS_BUILD_ID + ')';
-
-        if (process.env.BROWSER_PROVIDER === 'saucelabs' || !process.env.BROWSER_PROVIDER) {
-            // Allocating a browser can take pretty long (eg. if we are out of capacity
-            // and need to wait for another build to finish) and so the
-            // `captureTimeout` typically kills an in-queue-pending request, which
-            // makes no sense.
-            config.captureTimeout = 0;
-        }
-    }
 };
