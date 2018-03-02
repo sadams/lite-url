@@ -1,6 +1,6 @@
 {
   "name": "lite-url",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "authors": [
     "Sam Adams <adams.sam@gmail.com>"
   ],
@@ -10,7 +10,7 @@
     "uri",
     "url parsing"
   ],
-  "license": "WTFPL",
+  "license": "(WTFPL OR BSD)",
   "homepage": "https://github.com/sadams/lite-url",
   "bugs": "https://github.com/sadams/lite-url/issues",
   "repository": {
