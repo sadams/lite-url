@@ -1,8 +1,8 @@
 /**
  * lite-url - Small, JS lib that uses regex for parsing a URL into it's component parts.
- * @version v1.0.0
+ * @version v1.0.5
  * @link https://github.com/sadams/lite-url
- * @license WTFPL
+ * @license BSD-3-Clause
  */
 (function(){
     'use strict';
