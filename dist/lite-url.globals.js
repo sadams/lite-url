@@ -1,4 +1,11 @@
+/**
+ * @version v1.0.5 (Mon, 05 Mar 2018 21:35:58 GMT)
+ * @link https://github.com/sadams/lite-url.git
+ * @license BSD-3-Clause
+ */
 
+var liteURL = (function () {
+'use strict';
 
 /**
  * In memory cache for so we don't parse the same url twice
@@ -174,4 +181,6 @@ liteURL.changeQueryParser = function (parser) {
   queryParser = parser;
 };
 
-export default liteURL;
+return liteURL;
+
+}());

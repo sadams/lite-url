@@ -10,29 +10,36 @@
     "uri",
     "url parsing"
   ],
-  "license": "(WTFPL OR BSD)",
+  "license": "BSD-3-Clause",
   "homepage": "https://github.com/sadams/lite-url",
   "bugs": "https://github.com/sadams/lite-url/issues",
   "repository": {
     "type": "git",
     "url": "https://github.com/sadams/lite-url.git"
   },
-  "main": "dist/lite-url.min.js",
   "scripts": {
-    "test": "karma start --single-run"
+    "test": "run-s test:**",
+    "test:lint": "eslint .",
+    "test:deps": "npm-check  --ignore '{husky,chai}'",
+    "test:as-module": "mocha 'test/node/**/*.js'",
+    "test:in-browser": "mocha-headless-chrome -f test/browser/lite-url.test.html",
+    "build": "run-s build:*",
+    "build:clean": "rm -rf dist; mkdir -p dist",
+    "build:lib": "node build.js",
+    "precommit": "run-s test"
   },
   "devDependencies": {
-    "gulp": "^3.8.10",
-    "gulp-header": "^1.2.2",
-    "gulp-jshint": "^1.9.0",
-    "gulp-karma": "0.0.4",
-    "gulp-load-plugins": "^0.8.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^1.1.0",
-    "karma": "^0.12.31",
-    "karma-cli": "0.0.4",
-    "karma-qunit": "^0.1.4",
-    "karma-sauce-launcher": "^0.2.10",
-    "node-qunit-phantomjs": "^1.2.0"
+    "chai": "^4.1.2",
+    "eslint": "^4.18.2",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.9.0",
+    "husky": "^0.14.3",
+    "mocha": "^5.0.1",
+    "mocha-headless-chrome": "^1.8.2",
+    "npm-check": "^5.5.2",
+    "npm-run-all": "^4.1.2",
+    "rollup": "^0.56.4",
+    "rollup-plugin-license": "^0.5.0",
+    "rollup-plugin-uglify": "^3.0.0"
   }
 }

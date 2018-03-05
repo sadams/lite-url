@@ -2,7 +2,7 @@
 
 [![dependencies](https://david-dm.org/sadams/lite-url.png)](https://david-dm.org/sadams/lite-url)
 
-[![Sauce Test Status](https://saucelabs.com/browser-matrix/samadamslite.svg)](https://saucelabs.com/u/samadamslite)
+[![Build Status](https://saucelabs.com/browser-matrix/samadamslite.svg)](https://saucelabs.com/beta/builds/a1a630087c5546d5976f5ae213da2612)
 
 # lite-url
 
